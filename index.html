@@ -2,108 +2,859 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101018">
 <title>Замок Флюцера — Камилле 10 лет</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#100d16;color:#f8edda;font-family:Georgia,serif;line-height:1.6}
-.hero{min-height:94vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px;background:linear-gradient(#100d1670,#100d16),radial-gradient(ellipse at 50% 35%,#754b39,#211727 60%,#09080e)}
-.eyebrow{letter-spacing:5px;text-transform:uppercase;color:#d7b775;font-size:12px}
-h1{font-size:clamp(38px,9vw,68px);line-height:1.1;margin:22px 0;color:#f5dba7;font-weight:normal}
-h2{color:#e6c786;font-weight:normal;font-size:28px}
-p{max-width:650px}
-button,.button{display:inline-block;background:#c6a263;color:#171019;border:0;padding:14px 24px;text-decoration:none;font-size:16px;cursor:pointer;margin-top:16px}
-section{padding:55px 20px;max-width:800px;margin:auto}
-.card{border:1px solid #766044;background:#1b1622;padding:22px;margin:16px 0}
-a{color:#f2d39a}
-.small{font-size:14px;color:#c9bdad}
-li{margin:10px 0}
-input,select,textarea{width:100%;padding:12px;margin:8px 0;background:#100d16;color:white;border:1px solid #766044;font-size:16px}
-footer{text-align:center;padding:30px;color:#c6a263}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --gold: #d9bd82;
+  --cream: #f5ead5;
+  --night: #101018;
+  --panel: #1b1a25;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--cream);
+  background: var(--night);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+a { color: var(--gold); }
+
+.hero {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 65px 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 42%, #55506b 0%, #282538 29%, transparent 65%),
+    linear-gradient(180deg, #11121d, #292333 55%, #111018);
+}
+
+.hero::before {
+  content: "✦     ·        ✧       ·     ✦";
+  position: absolute;
+  top: 8%;
+  color: var(--gold);
+  font-size: 22px;
+  letter-spacing: 18px;
+  opacity: .8;
+}
+
+.moon {
+  position: absolute;
+  top: 12%;
+  right: 15%;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #f4e5c1;
+  box-shadow: 0 0 35px #f4e5c166, 0 0 110px #d9bd8233;
+}
+
+.castle {
+  position: relative;
+  width: min(440px, 95%);
+  height: 225px;
+  margin: 5px auto 22px;
+  filter: drop-shadow(0 0 22px #d9bd8220);
+}
+
+.castle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: clamp(38px, 9vw, 68px);
+  line-height: 1.05;
+  margin: 14px 0;
+}
+
+h1 span {
+  display: block;
+  color: var(--gold);
+  font-size: 1.18em;
+}
+
+.hero p {
+  max-width: 420px;
+  margin: 8px auto 24px;
+}
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  color: var(--night);
+  background: var(--gold);
+  padding: 13px 25px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 10px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.button:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--gold);
+}
+
+.button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.gate {
+  transform-origin: center;
+  transition: transform 1.5s ease;
+}
+
+.hero.opened .gate.left { transform: translateX(-24px); }
+.hero.opened .gate.right { transform: translateX(24px); }
+
+section {
+  padding: 75px 20px;
+}
+
+.container {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-head h2 {
+  font-size: clamp(34px, 7vw, 49px);
+  color: var(--gold);
+  margin: 8px 0;
+  line-height: 1.15;
+}
+
+.section-head p {
+  max-width: 580px;
+  margin: 10px auto;
+  color: #c9c0b5;
+}
+
+.details {
+  background: #171620;
+  border-top: 1px solid #d9bd8230;
+  border-bottom: 1px solid #d9bd8230;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.detail {
+  border: 1px solid #d9bd8240;
+  padding: 22px 12px;
+  text-align: center;
+}
+
+.detail strong {
+  display: block;
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.detail small {
+  color: #bdb4a9;
+  font-size: 10px;
+}
+
+.message {
+  max-width: 680px;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #d9bd8250;
+  background: linear-gradient(145deg, #22202c, #171620);
+  text-align: center;
+}
+
+.message h3 {
+  font-size: 31px;
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+
+.message p { margin: 12px 0; }
+
+.wishlist {
+  background: #171620;
+}
+
+.gifts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.gift {
+  background: var(--panel);
+  border: 1px solid #d9bd822b;
+  padding: 17px;
+  min-width: 0;
+}
+
+.gift h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+}
+
+.gift .status {
+  display: block;
+  font-size: 11px;
+  color: #a9d5a6;
+  margin-bottom: 12px;
+}
+
+.gift .status.taken { color: #e6bd80; }
+
+.gift-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gift .button {
+  width: 100%;
+  padding: 10px 8px;
+  font-size: 9px;
+  text-align: center;
+}
+
+.gift .button:disabled {
+  border-color: #666;
+  color: #aaa;
+  background: #292833;
+}
+
+.gift-link {
+  text-align: center;
+  text-decoration: none;
+}
+
+.gift-link:hover { text-decoration: underline; }
+
+.note {
+  color: #aaa2a0;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 22px;
+}
+
+.rsvp-form {
+  max-width: 520px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  color: var(--gold);
+  font-size: 11px;
+  margin: 18px 0 7px;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  color: var(--cream);
+  background: #1b1a25;
+  border: 1px solid #d9bd8255;
+  border-radius: 0;
+}
+
+input:focus, select:focus {
+  outline: 1px solid var(--gold);
+}
+
+form .button {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.rules {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.rule-box {
+  background: #1b1a25;
+  padding: 20px;
+  border-top: 1px solid var(--gold);
+}
+
+.rule-box h3 {
+  color: var(--gold);
+  font-size: 25px;
+  margin: 0 0 10px;
+}
+
+.rule-box ul {
+  padding-left: 18px;
+  margin-bottom: 0;
+}
+
+.rule-box li { margin-bottom: 8px; }
+
+footer {
+  padding: 35px 20px;
+  text-align: center;
+  border-top: 1px solid #d9bd8230;
+  color: #a9a1a0;
+  font-size: 11px;
+}
+
+footer strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 440px);
+  background: #eee0c7;
+  color: #191720;
+  padding: 15px 18px;
+  z-index: 10;
+  display: none;
+  box-shadow: 0 10px 40px #0008;
+}
+
+.toast.show { display: block; }
+
+.loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 25px;
+  color: var(--gold);
+}
+
+@media (max-width: 520px) {
+  section { padding: 55px 17px; }
+  .details-grid { grid-template-columns: 1fr; }
+  .detail { padding: 15px; }
+  .gifts { grid-template-columns: 1fr; }
+  .rules { grid-template-columns: 1fr; }
+  .castle { height: 190px; }
+  .moon { width: 55px; height: 55px; }
+}
 </style>
 </head>
+
 <body>
-<header class="hero">
-<div class="eyebrow">Приглашение на тайную миссию</div>
-<h1>Замок<br>Флюцера</h1>
-<p>Приглашаю тебя на свой юбилей — <strong>10 ЛЕТ!</strong></p>
-<p>Нас ждёт настоящее приключение в замке Флюцера. Готова принять вызов?</p>
-<a class="button" href="#invitation">Войти в замок</a>
+
+<header class="hero" id="hero">
+  <div class="moon"></div>
+
+  <div class="eyebrow">Приглашение в таинственный замок</div>
+
+  <div class="castle" aria-label="Иллюстрация замка">
+    <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="stone" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#777086"/>
+          <stop offset="1" stop-color="#272433"/>
+        </linearGradient>
+      </defs>
+
+      <path d="M20 220 L20 100 L48 100 L48 63 L77 82 L77 111 L111 111 L111 76 L145 49 L179 76 L179 220Z"
+            fill="url(#stone)" stroke="#b6a17a" stroke-width="1.2"/>
+
+      <path d="M241 220 L241 76 L275 49 L309 76 L309 111 L343 111 L343 82 L372 63 L400 100 L400 220Z"
+            fill="url(#stone)" stroke="#b6a17a" stroke-width="1.2"/>
+
+      <path d="M106 220 L106 130 L151 103 L196 130 L196 220Z"
+            fill="#373342" stroke="#b6a17a"/>
+
+      <path d="M224 220 L224 130 L269 103 L314 130 L314 220Z"
+            fill="#373342" stroke="#b6a17a"/>
+
+      <path d="M164 220 L164 112 L210 74 L256 112 L256 220Z"
+            fill="url(#stone)" stroke="#c2a978" stroke-width="1.5"/>
+
+      <path d="M186 220 L186 174 Q210 143 234 174 L234 220Z"
+            fill="#171620" stroke="#d9bd82" stroke-width="1.4"/>
+
+      <g fill="#e7c780">
+        <path d="M38 111 h12 v23 h-12z"/>
+        <path d="M66 123 h12 v23 h-12z"/>
+        <path d="M129 132 h12 v24 h-12z"/>
+        <path d="M162 95 h12 v23 h-12z"/>
+        <path d="M246 95 h12 v23 h-12z"/>
+        <path d="M278 132 h12 v24 h-12z"/>
+        <path d="M332 123 h12 v23 h-12z"/>
+        <path d="M370 111 h12 v23 h-12z"/>
+      </g>
+
+      <g fill="#292432">
+        <path d="M34 100 l10 -19 10 19z"/>
+        <path d="M62 112 l10 -19 10 19z"/>
+        <path d="M124 122 l11 -19 11 19z"/>
+        <path d="M157 85 l11 -20 11 20z"/>
+        <path d="M241 85 l11 -20 11 20z"/>
+        <path d="M273 122 l11 -19 11 19z"/>
+        <path d="M327 112 l10 -19 10 19z"/>
+        <path d="M365 100 l10 -19 10 19z"/>
+      </g>
+
+      <path d="M0 220 Q90 202 160 220 T300 220 T420 220"
+            fill="none" stroke="#8d8295" stroke-width="2"/>
+
+      <g fill="#d9bd82">
+        <circle cx="210" cy="57" r="3"/>
+        <circle cx="91" cy="61" r="2"/>
+        <circle cx="351" cy="54" r="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <h1>Тайная миссия <span>начинается…</span></h1>
+
+  <p>
+    Приглашаю тебя на мой юбилей — <strong>10 ЛЕТ!</strong><br>
+    Нас ждёт настоящее приключение в замке Флюцера!
+  </p>
+
+  <button class="button" id="enterCastle">Войти в замок</button>
+
+  <p style="font-size:11px;color:#c9bdac;margin-top:20px">
+    Готова принять вызов?
+  </p>
 </header>
 
-<section id="invitation">
-<div class="eyebrow">Королевское приглашение</div>
-<h2>Камилле исполняется 10 лет!</h2>
-<div class="card">
-<p>📅 <strong>8 ноября 2026 года</strong></p>
-<p>🕛 Начало в <strong>12:00</strong></p>
-<p>📍 Квест-проект FEST</p>
-<p>г. Набережные Челны, ул. Дружбы народов, 5А</p>
-<a href="https://2gis.ru/nabchelny/geo/70000001113093267" target="_blank" rel="noopener">Открыть карту →</a>
-</div>
-</section>
+<section class="details" id="invitation">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Королевский указ</div>
+      <h2>Тебя ждут в замке!</h2>
+      <p>Приготовься к приключению, тайнам и незабываемому празднику!</p>
+    </div>
 
-<section id="treasure">
-<div class="eyebrow">Секретный раздел</div>
-<h2>🎁 Сокровищница именинницы</h2>
-<p>Гостья замка! Если ты ищешь идею для подарка, загляни в мою сокровищницу.</p>
-<p>Ни один подарок из списка не является обязательным. Ты можешь выбрать то, что захочешь. Главное сокровище — разделить со мной этот особенный день! ❤️</p>
-<div class="card">
-<h3>Сундук моих желаний</h3>
-<p>Список подарков подключим на следующем этапе.</p>
-</div>
+    <div class="details-grid">
+      <div class="detail">
+        <strong>8 ноября</strong>
+        <small>ВОСКРЕСЕНЬЕ · 2026 ГОД</small>
+      </div>
+
+      <div class="detail">
+        <strong>12:00</strong>
+        <small>ВРЕМЯ НАЧАЛА</small>
+      </div>
+
+      <div class="detail">
+        <strong>Quest Project FEST</strong>
+        <small>МЕСТО ВСТРЕЧИ</small>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:24px">
+      Набережные Челны, улица Дружбы Народов, 5А
+    </p>
+
+    <div style="text-align:center">
+      <a class="button secondary"
+         href="https://2gis.ru/nabchelny/geo/70000001113093267"
+         target="_blank" rel="noopener">
+        Открыть карту
+      </a>
+    </div>
+  </div>
 </section>
 
 <section>
-<div class="eyebrow">Важное послание</div>
-<h2>Свод правил замка Флюцера</h2>
-<div class="card">
-<h3>🚫 Запрещается</h3>
-<ul>
-<li>Бить актёров.</li>
-<li>Ломать атрибутику квеста.</li>
-<li>Закрывать все двери.</li>
-<li>Выносить атрибутику за пределы квеста.</li>
-</ul>
-</div>
-<div class="card">
-<h3>✨ Обязательно</h3>
-<ul>
-<li>Надеть максимально удобную одежду.</li>
-<li>Обязательно принести сменную обувь.</li>
-<li>Заранее сообщить о заболеваниях и фобиях.</li>
-</ul>
-</div>
+  <div class="container">
+    <div class="message">
+      <div class="eyebrow">Тебе, моя дорогая гостья</div>
+      <h3>📜 Послание из замка</h3>
+
+      <p>
+        Гостья замка! Если ты оказалась перед моей сокровищницей,
+        значит, ты ищешь идею для подарка!
+      </p>
+
+      <p>
+        Но помни: ни одно сокровище из этого списка не является
+        обязательным. 💫 Ты можешь выбрать любой подарок, который захочешь.
+      </p>
+
+      <p>
+        А если тебе нужна подсказка, загляни в сундук моих желаний —
+        там собраны идеи, которые точно меня порадуют!
+      </p>
+
+      <p>
+        Главное сокровище — это то, что ты разделишь со мной
+        этот особенный день! ❤️
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="wishlist" id="wishlist">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Сокровищница именинницы</div>
+      <h2>Сундук моих желаний</h2>
+      <p>
+        Здесь собраны идеи подарков. Выбери то, что тебе по душе.
+        Если подарок уже забронирован, ты увидишь имя гостьи.
+      </p>
+    </div>
+
+    <div class="gifts" id="giftList">
+      <div class="loading">Открываем сокровищницу…</div>
+    </div>
+
+    <p class="note">
+      Бронирование помогает избежать повторов, но выбор подарка
+      полностью остаётся за тобой. ❤️
+    </p>
+  </div>
 </section>
 
 <section id="rsvp">
-<h2>💌 Ответ на приглашение</h2>
-<p>Пожалуйста, сообщи, сможешь ли ты принять участие в приключении.</p>
-<form id="rsvpForm">
-<label>Твоё имя<input id="guestName" required maxlength="100" placeholder="Как тебя зовут?"></label>
-<label>Ты придёшь?
-<select id="attendance" required>
-<option value="">Выбери ответ</option>
-<option value="Да, буду!">Да, буду!</option>
-<option value="К сожалению, не смогу">К сожалению, не смогу</option>
-</select></label>
-<button type="submit">Подготовить ответ</button>
-<p id="rsvpMessage" class="small"></p>
-</form>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Ответ на королевское приглашение</div>
+      <h2>Ты придёшь?</h2>
+      <p>Пожалуйста, сообщи, сможешь ли разделить со мной этот день.</p>
+    </div>
+
+    <form class="rsvp-form" id="rsvpForm">
+      <label for="guestName">Твоё имя</label>
+      <input id="guestName" name="guestName"
+             maxlength="100" required
+             placeholder="Как тебя зовут?">
+
+      <label for="attendance">Твой ответ</label>
+      <select id="attendance" name="attendance" required>
+        <option value="">Выбери ответ</option>
+        <option value="Приду">Конечно, приду! ❤️</option>
+        <option value="Не смогу прийти">К сожалению, не смогу прийти</option>
+      </select>
+
+      <button class="button" id="rsvpButton" type="submit">
+        Отправить ответ
+      </button>
+
+      <p id="rsvpStatus" class="note" aria-live="polite"></p>
+    </form>
+  </div>
 </section>
 
-<footer>Тайная миссия начинается… ✨<br>Камилла • 10 лет • 8 ноября 2026</footer>
+<section style="background:#171620">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Перед началом приключения</div>
+      <h2>Правила замка</h2>
+      <p>Чтобы праздник был весёлым, безопасным и запомнился всем!</p>
+    </div>
+
+    <div class="rules">
+      <div class="rule-box">
+        <h3>🚫 Запрещено</h3>
+        <ul>
+          <li>Бить актёров.</li>
+          <li>Ломать реквизит квеста.</li>
+          <li>Закрывать все двери.</li>
+          <li>Выносить реквизит за пределы квеста.</li>
+        </ul>
+      </div>
+
+      <div class="rule-box">
+        <h3>✨ Обязательно</h3>
+        <ul>
+          <li>Надеть удобную одежду.</li>
+          <li>Взять сменную обувь.</li>
+          <li>Заранее сообщить о заболеваниях и фобиях.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Замок Флюцера</strong>
+  Камилле исполняется 10 лет ❤️
+  <p>До встречи в мире приключений!</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-document.getElementById('rsvpForm').addEventListener('submit',function(e){
-e.preventDefault();
-const name=document.getElementById('guestName').value.trim();
-const answer=document.getElementById('attendance').value;
-const subject=encodeURIComponent('Ответ на приглашение Камиллы');
-const body=encodeURIComponent('Имя: '+name+'\nОтвет: '+answer);
-document.getElementById('rsvpMessage').textContent='Откроется почтовое приложение, чтобы отправить ответ. Нажми «Отправить» в письме.';
-window.location.href='mailto:?subject='+subject+'&body='+body;
+/*
+  ВАЖНО:
+  Замени YOUR_SUPABASE_PUBLISHABLE_KEY на свой
+  публичный Publishable key из Supabase.
+  Секретный ключ здесь не используется.
+*/
+
+const SUPABASE_URL = 'https://cbivrsolhzgvrfazeblf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_bAp76gKa9Yt4BOX2iQb9RQ_ZXkpFSES';
+
+const giftList = document.getElementById('giftList');
+const toast = document.getElementById('toast');
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[char]);
+}
+
+function isConfigured() {
+  return SUPABASE_KEY !== 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+}
+
+async function api(path, options = {}) {
+  const response = await fetch(SUPABASE_URL + path, {
+    ...options,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      ...(options.headers || {})
+    }
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(detail || 'Ошибка запроса');
+  }
+
+  if (response.status === 204) return null;
+
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
+}
+
+async function loadGifts() {
+  giftList.innerHTML = '<div class="loading">Открываем сокровищницу…</div>';
+
+  if (!isConfigured()) {
+    giftList.innerHTML =
+      '<div class="loading">Добавь публичный ключ Supabase в код сайта, чтобы загрузить подарки.</div>';
+    return;
+  }
+
+  try {
+    const gifts = await api(
+      '/rest/v1/gifts?select=id,name,url,reserved_by&order=id.asc'
+    );
+
+    if (!gifts || gifts.length === 0) {
+      giftList.innerHTML =
+        '<div class="loading">Пока в сундуке нет подарков.</div>';
+      return;
+    }
+
+    giftList.innerHTML = gifts.map(gift => {
+      const reserved = Boolean(gift.reserved_by);
+      const status = reserved
+        ? 'Уже выбрала: ' + escapeHTML(gift.reserved_by)
+        : 'Свободно для бронирования';
+
+      const safeURL = String(gift.url || '').trim();
+      const validURL = /^https:\/\/(www\.)?(wildberries\.ru|ozon\.ru)(\/|$)/i.test(safeURL);
+
+      return `
+        <article class="gift">
+          <h3>${escapeHTML(gift.name)}</h3>
+          <span class="status ${reserved ? 'taken' : ''}">
+            ${status}
+          </span>
+          <div class="gift-actions">
+            ${validURL ? `
+              <a class="button secondary gift-link"
+                 href="${escapeHTML(safeURL)}"
+                 target="_blank" rel="noopener">
+                Посмотреть подарок
+              </a>` : ''}
+
+            <button class="button reserve-button"
+                    data-id="${Number(gift.id)}"
+                    ${reserved ? 'disabled' : ''}>
+              ${reserved ? 'Уже забронировано' : 'Забронировать'}
+            </button>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    giftList.querySelectorAll('.reserve-button').forEach(button => {
+      button.addEventListener('click', () => reserveGift(button));
+    });
+
+  } catch (error) {
+    console.error(error);
+    giftList.innerHTML =
+      '<div class="loading">Не удалось загрузить подарки. Проверь подключение Supabase и обнови страницу.</div>';
+  }
+}
+
+async function reserveGift(button) {
+  const guestName = prompt('Как тебя зовут? Введи своё имя для бронирования:');
+
+  if (guestName === null) return;
+
+  const cleanName = guestName.trim();
+
+  if (!cleanName || cleanName.length > 100) {
+    showToast('Пожалуйста, введи имя длиной до 100 символов.');
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'Бронируем…';
+
+  try {
+    const result = await api('/rest/v1/rpc/reserve_gift', {
+      method: 'POST',
+      body: JSON.stringify({
+        gift_id: Number(button.dataset.id),
+        guest_name: cleanName
+      })
+    });
+
+    if (result === true) {
+      showToast('Подарок забронирован! Спасибо, ' + cleanName + ' ❤️');
+    } else {
+      showToast('Этот подарок уже успели забронировать. Выбери другой.');
+    }
+
+    await loadGifts();
+
+  } catch (error) {
+    console.error(error);
+    showToast('Не получилось забронировать. Проверь подключение и попробуй ещё раз.');
+    button.disabled = false;
+    button.textContent = 'Забронировать';
+  }
+}
+
+document.getElementById('rsvpForm').addEventListener('submit', async event => {
+  event.preventDefault();
+
+  if (!isConfigured()) {
+    showToast('Сначала нужно подключить Supabase.');
+    return;
+  }
+
+  const guestName = document.getElementById('guestName').value.trim();
+  const attendance = document.getElementById('attendance').value;
+  const button = document.getElementById('rsvpButton');
+  const status = document.getElementById('rsvpStatus');
+
+  if (!guestName || guestName.length > 100) {
+    status.textContent = 'Пожалуйста, проверь имя.';
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'Отправляем…';
+  status.textContent = '';
+
+  try {
+    await api('/rest/v1/rsvps', {
+      method: 'POST',
+      headers: { 'Prefer': 'return=minimal' },
+      body: JSON.stringify({
+        guest_name: guestName,
+        attendance: attendance
+      })
+    });
+
+    status.textContent = 'Твой ответ сохранён. Спасибо! ❤️';
+    event.target.reset();
+    showToast('Ответ отправлен! До встречи в замке!');
+
+  } catch (error) {
+    console.error(error);
+    status.textContent =
+      'Не удалось сохранить ответ. Попробуй ещё раз чуть позже.';
+
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Отправить ответ';
+  }
 });
+
+document.getElementById('enterCastle').addEventListener('click', () => {
+  document.getElementById('hero').classList.add('opened');
+  document.getElementById('invitation').scrollIntoView({ behavior: 'smooth' });
+});
+
+loadGifts();
 </script>
+
 </body>
 </html>
