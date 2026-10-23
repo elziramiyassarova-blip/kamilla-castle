@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Замок Флюцера — Камилле 10 лет</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100d16;color:#f8edda;font-family:Georgia,serif;line-height:1.6}
+.hero{min-height:94vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px;background:linear-gradient(#100d1670,#100d16),radial-gradient(ellipse at 50% 35%,#754b39,#211727 60%,#09080e)}
+.eyebrow{letter-spacing:5px;text-transform:uppercase;color:#d7b775;font-size:12px}
+h1{font-size:clamp(38px,9vw,68px);line-height:1.1;margin:22px 0;color:#f5dba7;font-weight:normal}
+h2{color:#e6c786;font-weight:normal;font-size:28px}
+p{max-width:650px}
+button,.button{display:inline-block;background:#c6a263;color:#171019;border:0;padding:14px 24px;text-decoration:none;font-size:16px;cursor:pointer;margin-top:16px}
+section{padding:55px 20px;max-width:800px;margin:auto}
+.card{border:1px solid #766044;background:#1b1622;padding:22px;margin:16px 0}
+a{color:#f2d39a}
+.small{font-size:14px;color:#c9bdad}
+li{margin:10px 0}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;background:#100d16;color:white;border:1px solid #766044;font-size:16px}
+footer{text-align:center;padding:30px;color:#c6a263}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="eyebrow">Приглашение на тайную миссию</div>
+<h1>Замок<br>Флюцера</h1>
+<p>Приглашаю тебя на свой юбилей — <strong>10 ЛЕТ!</strong></p>
+<p>Нас ждёт настоящее приключение в замке Флюцера. Готова принять вызов?</p>
+<a class="button" href="#invitation">Войти в замок</a>
+</header>
+
+<section id="invitation">
+<div class="eyebrow">Королевское приглашение</div>
+<h2>Камилле исполняется 10 лет!</h2>
+<div class="card">
+<p>📅 <strong>8 ноября 2026 года</strong></p>
+<p>🕛 Начало в <strong>12:00</strong></p>
+<p>📍 Квест-проект FEST</p>
+<p>г. Набережные Челны, ул. Дружбы народов, 5А</p>
+<a href="https://2gis.ru/nabchelny/geo/70000001113093267" target="_blank" rel="noopener">Открыть карту →</a>
+</div>
+</section>
+
+<section id="treasure">
+<div class="eyebrow">Секретный раздел</div>
+<h2>🎁 Сокровищница именинницы</h2>
+<p>Гостья замка! Если ты ищешь идею для подарка, загляни в мою сокровищницу.</p>
+<p>Ни один подарок из списка не является обязательным. Ты можешь выбрать то, что захочешь. Главное сокровище — разделить со мной этот особенный день! ❤️</p>
+<div class="card">
+<h3>Сундук моих желаний</h3>
+<p>Список подарков подключим на следующем этапе.</p>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Важное послание</div>
+<h2>Свод правил замка Флюцера</h2>
+<div class="card">
+<h3>🚫 Запрещается</h3>
+<ul>
+<li>Бить актёров.</li>
+<li>Ломать атрибутику квеста.</li>
+<li>Закрывать все двери.</li>
+<li>Выносить атрибутику за пределы квеста.</li>
+</ul>
+</div>
+<div class="card">
+<h3>✨ Обязательно</h3>
+<ul>
+<li>Надеть максимально удобную одежду.</li>
+<li>Обязательно принести сменную обувь.</li>
+<li>Заранее сообщить о заболеваниях и фобиях.</li>
+</ul>
+</div>
+</section>
+
+<section id="rsvp">
+<h2>💌 Ответ на приглашение</h2>
+<p>Пожалуйста, сообщи, сможешь ли ты принять участие в приключении.</p>
+<form id="rsvpForm">
+<label>Твоё имя<input id="guestName" required maxlength="100" placeholder="Как тебя зовут?"></label>
+<label>Ты придёшь?
+<select id="attendance" required>
+<option value="">Выбери ответ</option>
+<option value="Да, буду!">Да, буду!</option>
+<option value="К сожалению, не смогу">К сожалению, не смогу</option>
+</select></label>
+<button type="submit">Подготовить ответ</button>
+<p id="rsvpMessage" class="small"></p>
+</form>
+</section>
+
+<footer>Тайная миссия начинается… ✨<br>Камилла • 10 лет • 8 ноября 2026</footer>
+
+<script>
+document.getElementById('rsvpForm').addEventListener('submit',function(e){
+e.preventDefault();
+const name=document.getElementById('guestName').value.trim();
+const answer=document.getElementById('attendance').value;
+const subject=encodeURIComponent('Ответ на приглашение Камиллы');
+const body=encodeURIComponent('Имя: '+name+'\nОтвет: '+answer);
+document.getElementById('rsvpMessage').textContent='Откроется почтовое приложение, чтобы отправить ответ. Нажми «Отправить» в письме.';
+window.location.href='mailto:?subject='+subject+'&body='+body;
+});
+</script>
+</body>
+</html>
